@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+    image: 51-burguer-app
+    restart: always
+    ports:
+      - "8787:8080"
+    networks:
+      - blog-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb-data/:/data/db
+    hostname: "localhost-mongo"
+    networks:
+      - blog-network
+    healthcheck:
+      test: [ "CMD-SHELL", "mongo --eval 'db.runCommand({ ping: 1 })'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  blog-network:
+    driver: bridge
+
+
+#volumes:
+#  pg-data:
