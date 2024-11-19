@@ -1,39 +1,38 @@
 package com.fiap.burguer.core.domain;
 import com.fiap.burguer.core.application.enums.StatusOrder;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
-public class CheckOut implements Serializable {
-    private int id;
+public class CheckOut {
 
-    private Date dateCreated;
-
+    private String id;
+    private int orderId;
+    private LocalDateTime dateCreated;
     private StatusOrder paymentStatus;
-
     private double totalPrice;
+    private Integer clientId;
+    private String cpf;
 
-    private String transactId;
-
-    public void generateTransactId() {
-        if (this.transactId == null || this.transactId.isEmpty()) {
-            this.transactId = UUID.randomUUID().toString();
-        }
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Date getDateCreated() {
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public LocalDateTime  getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime  dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -53,11 +52,21 @@ public class CheckOut implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public String getTransactId() {
-        return transactId;
+
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setTransactId(String transactId) {
-        this.transactId = transactId;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
 }

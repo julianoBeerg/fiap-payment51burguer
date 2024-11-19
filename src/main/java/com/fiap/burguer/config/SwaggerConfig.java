@@ -13,7 +13,7 @@ public class SwaggerConfig {
     public GroupedOpenApi api()
     {
         return GroupedOpenApi.builder()
-                .group("OpenApiController")
+                .group("Checkout API")
                 .packagesToScan("com.fiap.burguer")
                 .build();
     }

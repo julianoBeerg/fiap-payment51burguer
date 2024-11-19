@@ -9,11 +9,13 @@ public class CheckoutPresenter {
             return null;
         }
         CheckoutResponse responseCheckout = new CheckoutResponse();
-        responseCheckout.setId(checkOut.getId());
-        responseCheckout.setTransactId(checkOut.getTransactId());
-        responseCheckout.setPayment_status(checkOut.getPaymentStatus());
+        responseCheckout.setId(checkOut.getOrderId());
+        responseCheckout.setPaymentStatus(checkOut.getPaymentStatus());
         responseCheckout.setDateCreated(checkOut.getDateCreated());
         responseCheckout.setTotalPrice(checkOut.getTotalPrice());
+        responseCheckout.setCpf(checkOut.getCpf());
+        responseCheckout.setClientId(checkOut.getClientId());
+
 
         return responseCheckout;
     }

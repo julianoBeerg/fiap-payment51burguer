@@ -1,24 +1,29 @@
 package com.fiap.burguer.driver.dto;
+
 import com.fiap.burguer.core.application.enums.StatusOrder;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class CheckoutResponse {
+
     private int id;
-    private Date dateCreated;
-    private StatusOrder payment_status;
+    private LocalDateTime dateCreated;
+    private StatusOrder paymentStatus;
     private double totalPrice;
-    private String transactId;
+    private Integer clientId;
+    private String cpf;
 
     public CheckoutResponse(int id,
-                            Date dateCreated,
-                            StatusOrder payment_status,
+                            LocalDateTime dateCreated,
+                            StatusOrder paymentStatus,
                             double totalPrice,
-                            String transactId) {
+                            Integer clientId,
+                            String cpf) {
         this.id = id;
         this.dateCreated = dateCreated;
-        this.payment_status = payment_status;
+        this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.transactId = transactId;
+        this.clientId = clientId;
+        this.cpf = cpf;
     }
 
     public CheckoutResponse() {
@@ -32,22 +37,20 @@ public class CheckoutResponse {
         this.id = id;
     }
 
-
-
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public StatusOrder getPayment_status() {
-        return payment_status;
+    public StatusOrder getPaymentStatus() {
+        return paymentStatus;
     }
 
-    public void setPayment_status(StatusOrder payment_status) {
-        this.payment_status = payment_status;
+    public void setPaymentStatus(StatusOrder paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public double getTotalPrice() {
@@ -58,11 +61,19 @@ public class CheckoutResponse {
         this.totalPrice = totalPrice;
     }
 
-    public String getTransactId() {
-        return transactId;
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setTransactId(String transactId) {
-        this.transactId = transactId;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

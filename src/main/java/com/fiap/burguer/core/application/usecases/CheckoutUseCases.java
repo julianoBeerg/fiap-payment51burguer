@@ -1,34 +1,43 @@
 package com.fiap.burguer.core.application.usecases;
-import com.fiap.burguer.core.application.ports.IPaymentGateway;
-import com.fiap.burguer.core.application.enums.StatusOrder;
+
 import com.fiap.burguer.core.domain.CheckOut;
+import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.infraestructure.repository.CheckOutRepository;
+import com.fiap.burguer.infraestructure.entities.CheckOutEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CheckoutUseCases {
 
-    private final IPaymentGateway paymentGateway;
     private final CheckOutRepository checkOutRepository;
 
-    public CheckoutUseCases(IPaymentGateway paymentGateway, CheckOutRepository checkOutRepository) {
-        this.paymentGateway = paymentGateway;
+    public CheckoutUseCases(CheckOutRepository checkOutRepository) {
         this.checkOutRepository = checkOutRepository;
     }
 
-    public CheckOut createCheckout(int id, StatusOrder statusOrder) {
-        CheckOut checkOut = new CheckOut();
-        checkOut.setId(id);
-        checkOut.setPaymentStatus(statusOrder);
-        boolean paymentResult = paymentGateway.processPayment(checkOut);
-        //todo jnunes
-//        if (paymentResult) {
-//            checkOutRepository.save(checkOut);
-//        }
-        return checkOut;
+    public CheckOut findByOrderId(int orderId) {
+        Optional<CheckOutEntity> optionalEntity = checkOutRepository.findByOrderId(orderId);
+
+        return optionalEntity.map(this::mapToDomain).orElse(null);
+
     }
 
-    public CheckOut findById(int id) {
-        return checkOutRepository.findById(id);
+    public CheckOut createCheckout(int orderId, StatusOrder statusOrder) {
+        CheckOutEntity checkoutEntity = new CheckOutEntity();
+        checkoutEntity.setOrderId(orderId);
+        checkoutEntity.setPaymentStatus(statusOrder);
+
+        checkOutRepository.save(checkoutEntity);
+
+        return mapToDomain(checkoutEntity);
+    }
+
+    private CheckOut mapToDomain(CheckOutEntity entity) {
+        CheckOut checkout = new CheckOut();
+        checkout.setOrderId(entity.getOrderId());
+        checkout.setPaymentStatus(entity.getPaymentStatus());
+        return checkout;
     }
 }
