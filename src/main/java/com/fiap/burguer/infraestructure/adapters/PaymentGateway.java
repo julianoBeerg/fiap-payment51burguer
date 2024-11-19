@@ -10,10 +10,8 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class PaymentGateway implements IPaymentGateway {
 
-    private static final String MERCADO_LIVRE_API_URL = "https://api.mercadolivre.com/payments";
-
     public boolean processPayment(CheckOut checkOut) {
-        boolean paymentApproved = callMercadoLivreApi(checkOut);
+        boolean paymentApproved = simulatePaymentResult();
         if (paymentApproved) {
             checkOut.setPaymentStatus(StatusOrder.APPROVEDPAYMENT);
         } else {
@@ -22,17 +20,7 @@ public class PaymentGateway implements IPaymentGateway {
         return paymentApproved;
     }
 
-    private boolean callMercadoLivreApi(CheckOut checkOut) {
-        RestTemplate restTemplate = new RestTemplate();
-
-        String paymentData = preparePaymentData(checkOut);
-
-        String response = restTemplate.postForObject(MERCADO_LIVRE_API_URL, paymentData, String.class);
-
-        return response != null && response.contains("approved");
-    }
-
-    private String preparePaymentData(CheckOut checkOut) {
-        return "{ \"amount\": \"" + checkOut.getTotalPrice() + "\", \"payment_method\": \"credit_card\" }";
+    private boolean simulatePaymentResult() {
+        return Math.random() > 0.5;
     }
 }

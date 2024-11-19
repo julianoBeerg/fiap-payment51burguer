@@ -34,17 +34,28 @@ public interface CheckoutApi {
             @Parameter(description = "CPF do cliente") @RequestParam(required = false) String cpf,
             @RequestHeader("Authorization") String authorizationHeader);
 
-    @PostMapping("/create/{order_id}/{status_order}")
+    @PostMapping("/create/{order_id}")
     @Operation(summary = "Cria um checkout e processa o pagamento")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Checkout e pagamento processados com sucesso!"),
             @ApiResponse(responseCode = "400", description = "Erro ao processar pagamento!"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado!")
     })
-    ResponseEntity<CheckoutResponse> createCheckout(
+    ResponseEntity<?> createCheckout(
             @Parameter(description = "ID do pedido (order_id)") @PathVariable("order_id") int orderId,
-            @Parameter(description = "Status do pagamento") @PathVariable("status_order") StatusOrder statusOrder,
             @RequestHeader("Authorization") String authorizationHeader
          );
+
+    @PutMapping("/update-status/{order_id}")
+    @Operation(summary = "Atualiza o status de um checkout existente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Status atualizado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Erro ao atualizar status!"),
+            @ApiResponse(responseCode = "404", description = "Pedido não encontrado!")
+    })
+    public ResponseEntity<?> updateCheckoutStatus(
+            @Parameter(description = "ID do pedido (order_id)") @PathVariable("order_id") int orderId,
+            @Parameter(description = "Novo status do pagamento") @RequestParam StatusOrder newStatus,
+            @RequestHeader("Authorization") String authorizationHeader);
 }
 

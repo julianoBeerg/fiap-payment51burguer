@@ -55,5 +55,19 @@ public class AuthenticationAdapter implements AuthenticationPort {
         String token = authorizationHeader.substring(bearerPrefix.length()).trim();
         return jwtUtil.getIdFromToken(token);
     }
+
+    @Override
+    public Integer getClientIdFromToken(String authorizationHeader) {
+        String bearerPrefix = "Bearer ";
+        String token = authorizationHeader.substring(bearerPrefix.length()).trim();
+        return jwtUtil.getIdFromToken(token);
+    }
+
+    @Override
+    public String getCpfFromToken(String authorizationHeader) {
+        String bearerPrefix = "Bearer ";
+        String token = authorizationHeader.substring(bearerPrefix.length()).trim();
+        return jwtUtil.getCpfFromToken(token);
+    }
 }
 

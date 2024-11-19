@@ -22,8 +22,12 @@ public class JwtUtil {
     }
 
     public String getCpfFromToken(String token) {
+        try {
         DecodedJWT decodedJWT = decodeToken(token);
         return decodedJWT.getClaim("cpf").asString();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public String getNameFromToken(String token) {

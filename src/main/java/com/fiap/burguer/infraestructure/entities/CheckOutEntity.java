@@ -1,6 +1,7 @@
 package com.fiap.burguer.infraestructure.entities;
 
 import com.fiap.burguer.core.application.enums.StatusOrder;
+import com.fiap.burguer.core.domain.CheckOut;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -42,6 +43,17 @@ public class CheckOutEntity {
         this.clientId = clientId;
         this.cpf = cpf;
         this.dateCreated = dateCreated;
+    }
+
+    public CheckOut toDomain() {
+        CheckOut checkout = new CheckOut();
+        checkout.setOrderId(this.orderId);
+        checkout.setTotalPrice(this.totalPrice);
+        checkout.setPaymentStatus(this.paymentStatus);
+        checkout.setClientId(this.clientId);
+        checkout.setCpf(this.cpf);
+        checkout.setDateCreated(this.dateCreated);
+        return checkout;
     }
 }
 

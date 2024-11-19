@@ -21,7 +21,7 @@ public class Config {
 
     @Bean
     public CheckoutUseCases getCheckoutService() {
-        return new CheckoutUseCases(checkOutRepository);
+        return new CheckoutUseCases(checkOutRepository, authenticationAdapter);
     }
 
     @Bean
