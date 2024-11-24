@@ -1,6 +1,5 @@
 package com.fiap.burguer.driver.dto;
 
-import com.fiap.burguer.core.application.enums.StatusOrder;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,9 +12,10 @@ public class CheckoutRequest {
     @DecimalMin(value = "0.01", message = "O preço total deve ser maior que zero")
     private Double totalPrice;
 
-    @NotNull(message = "O campo paymentStatus é obrigatório")
-    private StatusOrder paymentStatus;
-
+    public CheckoutRequest(Integer orderId, Double totalPrice){
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+    }
     public int getOrderId() {
         return orderId;
     }
@@ -32,11 +32,4 @@ public class CheckoutRequest {
         this.totalPrice = totalPrice;
     }
 
-    public StatusOrder getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(StatusOrder paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
 }

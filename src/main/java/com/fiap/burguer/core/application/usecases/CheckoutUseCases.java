@@ -2,6 +2,7 @@ package com.fiap.burguer.core.application.usecases;
 
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
+import com.fiap.burguer.driver.dto.CheckoutRequest;
 import com.fiap.burguer.driver.dto.CheckoutResponse;
 import com.fiap.burguer.driver.presenters.CheckoutPresenter;
 import com.fiap.burguer.infraestructure.entities.CheckOutEntity;
@@ -59,15 +60,15 @@ public class CheckoutUseCases {
                 .toList();
     }
 
-    public CheckoutResponse createCheckout(int orderId, StatusOrder statusOrder, String authorizationHeader) {
-        if (checkOutRepository.findByOrderId(orderId).isPresent()) {
+    public CheckoutResponse createCheckout(CheckoutRequest checkoutRequest, StatusOrder statusOrder, String authorizationHeader) {
+        if (checkOutRepository.findByOrderId(checkoutRequest.getOrderId()).isPresent()) {
             throw new RuntimeException("Pedido já existe com o ID informado!");
         }
 
         Integer clientId = authenticationPort.getClientIdFromToken(authorizationHeader);
         String cpf = authenticationPort.getCpfFromToken(authorizationHeader).replaceAll("\\D", "");
 
-        CheckOutEntity checkoutEntity = new CheckOutEntity(orderId, 0.0, statusOrder, clientId, cpf, LocalDateTime.now());
+        CheckOutEntity checkoutEntity = new CheckOutEntity(checkoutRequest.getOrderId(), checkoutRequest.getOrderId(), statusOrder, clientId, cpf, LocalDateTime.now());
         checkOutRepository.save(checkoutEntity);
 
         return CheckoutPresenter.mapCheckoutToResponse(checkoutEntity.toDomain());
@@ -90,4 +91,6 @@ public class CheckoutUseCases {
 
         return CheckoutPresenter.mapCheckoutToResponse(checkout.toDomain());
     }
+
+
 }

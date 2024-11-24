@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class AuthenticationAdapter implements AuthenticationPort {
     private final JwtUtil jwtUtil;
 
-    public AuthenticationAdapter() {
-        this.jwtUtil = new JwtUtil();
+    public AuthenticationAdapter(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
     }
 
     @Override

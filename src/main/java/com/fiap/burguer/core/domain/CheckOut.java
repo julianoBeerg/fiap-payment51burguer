@@ -8,7 +8,7 @@ public class CheckOut {
     private int orderId;
     private LocalDateTime dateCreated;
     private StatusOrder paymentStatus;
-    private double totalPrice;
+    private Double totalPrice;
     private Integer clientId;
     private String cpf;
 
@@ -48,7 +48,7 @@ public class CheckOut {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

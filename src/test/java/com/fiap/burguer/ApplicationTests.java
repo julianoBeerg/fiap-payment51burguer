@@ -10,21 +10,19 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@ActiveProfiles("test")  // Define um perfil de teste para garantir que a configuração de teste seja usada
+@ActiveProfiles("test")
 class ApplicationTests {
 
-//	@Autowired
-//	private ApplicationContext applicationContext;
-//
-//	@Test
-//	void contextLoads() {
-//		// Verifica se o contexto da aplicação carrega sem erros
-//		assertThat(applicationContext).isNotNull();
-//	}
-//
-//	@Test
-//	void applicationContextTest() {
-//		// Verifica se o contexto da aplicação está carregado corretamente
-//		assertThat(applicationContext.getBeanDefinitionCount()).isGreaterThan(0);
-//	}
+	@Autowired
+	private ApplicationContext applicationContext;
+
+	@Test
+	void contextLoads() {
+		assertThat(applicationContext).isNotNull();
+	}
+
+	@Test
+	void applicationContextTest() {
+		assertThat(applicationContext.getBeanDefinitionCount()).isGreaterThan(0);
+	}
 }

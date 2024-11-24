@@ -2,9 +2,9 @@ package com.fiap.burguer.driver.controller;
 
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.CheckoutUseCases;
+import com.fiap.burguer.driver.dto.CheckoutRequest;
 import com.fiap.burguer.driver.dto.CheckoutResponse;
 import com.fiap.burguer.driver.dto.ErrorResponse;
-import com.fiap.burguer.driver.presenters.CheckoutPresenter;
 import com.fiap.burguer.api.CheckoutApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,10 +48,10 @@ public class CheckoutController implements CheckoutApi {
     }
 
     @Override
-    public ResponseEntity<?> createCheckout(int orderId,  String authorizationHeader) {
+    public ResponseEntity<?> createCheckout(CheckoutRequest checkoutRequest, String authorizationHeader) {
         StatusOrder statusOrder = StatusOrder.WAITINGPAYMENT;
         try {
-            CheckoutResponse response = checkoutUseCases.createCheckout(orderId, statusOrder, authorizationHeader);
+            CheckoutResponse response = checkoutUseCases.createCheckout(checkoutRequest, statusOrder, authorizationHeader);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(

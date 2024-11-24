@@ -13,8 +13,6 @@ public class Config {
     @Autowired
     AuthenticationAdapter authenticationAdapter;
 
-    @Autowired
-    PaymentGateway paymentGateway;
 
     @Autowired
     CheckOutRepository checkOutRepository;
@@ -24,9 +22,5 @@ public class Config {
         return new CheckoutUseCases(checkOutRepository, authenticationAdapter);
     }
 
-    @Bean
-    public IPaymentGateway getPaymentGateway() {
-        return new PaymentGateway();
-    }
 
 }
