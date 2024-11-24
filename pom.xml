@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fiap</groupId>
-    <artifactId>51burguer</artifactId>
+    <artifactId>payment51burguer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>51burguer</name>
+    <name>payment51burguer</name>
     <description>sistema para pedidos de lanche</description>
     <properties>
         <java.version>22</java.version>
