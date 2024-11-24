@@ -17,6 +17,7 @@
         <java.version>22</java.version>
         <maven.compiler.release>22</maven.compiler.release>
         <sonar.organization>fiapteam51</sonar.organization>
+        <sonar.projectKey>fiapteam51_payment51burguer</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
