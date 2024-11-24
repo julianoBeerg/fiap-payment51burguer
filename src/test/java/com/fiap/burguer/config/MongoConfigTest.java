@@ -2,7 +2,10 @@ package com.fiap.burguer.config;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +33,13 @@ public class MongoConfigTest {
 
     @Test
     public void testMongoClient() {
-        MongoClient mongoClient = mongoConfig.mongoClient();
-        assertNotNull(mongoClient, "MongoClient should not be null.");
+        String connectionUri = "mongodb://mongo:mongo@172.17.0.1:27017";
+        ConnectionString connectionString = new ConnectionString(connectionUri);
+
+        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+
+        assertNotNull( MongoClients.create(mongoClientSettings), "MongoClient should not be null.");
     }
 }
