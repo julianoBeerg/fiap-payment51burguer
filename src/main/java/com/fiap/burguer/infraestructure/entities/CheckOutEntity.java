@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Document(collection = "checkout_order")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class CheckOutEntity {
     @Id

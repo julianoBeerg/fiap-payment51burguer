@@ -61,6 +61,7 @@ public class CheckoutUseCases {
     }
 
     public CheckoutResponse createCheckout(CheckoutRequest checkoutRequest, StatusOrder statusOrder, String authorizationHeader) {
+        authenticationPort.validateAuthorizationHeader(authorizationHeader);
         if (checkOutRepository.findByOrderId(checkoutRequest.getOrderId()).isPresent()) {
             throw new RuntimeException("Pedido já existe com o ID informado!");
         }

@@ -16,7 +16,6 @@ public class CheckoutPresenter {
         responseCheckout.setCpf(checkOut.getCpf());
         responseCheckout.setClientId(checkOut.getClientId());
 
-
         return responseCheckout;
     }
 }

@@ -13,16 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 class ApplicationTests {
 
-	@Autowired
-	private ApplicationContext applicationContext;
-
 	@Test
-	void contextLoads() {
-		assertThat(applicationContext).isNotNull();
+	void main() {
+		Application.main(new String[]{});
 	}
 
-	@Test
-	void applicationContextTest() {
-		assertThat(applicationContext.getBeanDefinitionCount()).isGreaterThan(0);
-	}
 }

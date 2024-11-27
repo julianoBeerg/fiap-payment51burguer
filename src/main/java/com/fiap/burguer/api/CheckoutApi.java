@@ -29,7 +29,6 @@ public interface CheckoutApi {
             @ApiResponse(responseCode = "200", description = "Consulta de checkouts realizada com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Nenhum checkout encontrado!")
     })
-
     ResponseEntity<?> searchCheckouts(
             @Parameter(description = "ID do pedido") @RequestParam(required = false) Integer orderId,
             @Parameter(description = "Status do pagamento") @RequestParam(required = false) StatusOrder status,

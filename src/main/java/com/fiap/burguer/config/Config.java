@@ -1,5 +1,5 @@
 package com.fiap.burguer.config;
-import com.fiap.burguer.core.application.ports.IPaymentGateway;
+
 import com.fiap.burguer.core.application.usecases.*;
 import com.fiap.burguer.infraestructure.adapters.*;
 import com.fiap.burguer.infraestructure.repository.CheckOutRepository;

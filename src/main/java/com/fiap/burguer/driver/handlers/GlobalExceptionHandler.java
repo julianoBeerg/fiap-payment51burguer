@@ -1,6 +1,6 @@
 package com.fiap.burguer.driver.handlers;
 
-import com.fiap.burguer.core.application.Exception.*;
+import com.fiap.burguer.core.application.exception.*;
 import com.fiap.burguer.driver.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     private String DEFAULT_ERROR = "Erro na requisição, por favor contacte o suporte";
 
     @ExceptionHandler(ImpossibleToCheckoutException.class)
-    public  ResponseEntity<ErrorResponse> handleImpossibleToCheckoutException(ImpossibleToCheckoutException ex, WebRequest request){
+    public ResponseEntity<ErrorResponse> handleImpossibleToCheckoutException(ImpossibleToCheckoutException ex, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),

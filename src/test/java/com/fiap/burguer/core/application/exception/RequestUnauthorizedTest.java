@@ -1,6 +1,5 @@
 package com.fiap.burguer.core.application.exception;
 
-import com.fiap.burguer.core.application.Exception.RequestUnauthorized;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

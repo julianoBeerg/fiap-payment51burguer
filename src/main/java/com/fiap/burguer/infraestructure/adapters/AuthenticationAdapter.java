@@ -1,5 +1,6 @@
 package com.fiap.burguer.infraestructure.adapters;
-import com.fiap.burguer.core.application.Exception.RequestUnauthorized;
+
+import com.fiap.burguer.core.application.exception.RequestUnauthorized;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.utils.JwtUtil;
 import org.springframework.stereotype.Component;
