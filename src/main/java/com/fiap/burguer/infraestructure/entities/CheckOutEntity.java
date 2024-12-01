@@ -6,13 +6,14 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 
 @Document(collection = "checkout_order")
 @Data
 @NoArgsConstructor
 public class CheckOutEntity {
+
     @Id
     private String id;
 
@@ -35,7 +36,7 @@ public class CheckOutEntity {
     private double totalPrice;
 
 
-    public CheckOutEntity(int orderId, double totalPrice, StatusOrder paymentStatus, Integer clientId, String cpf, LocalDateTime  dateCreated) {
+    public CheckOutEntity(int orderId, double totalPrice, StatusOrder paymentStatus, Integer clientId, String cpf, LocalDateTime dateCreated) {
         this.orderId = orderId;
         this.totalPrice = totalPrice;
         this.paymentStatus = paymentStatus;
@@ -45,7 +46,7 @@ public class CheckOutEntity {
     }
 
     public CheckOut toDomain() {
-        CheckOut checkout = new CheckOut();
+        CheckOut checkout = CheckOut.createCheckOut();
         checkout.setOrderId(this.orderId);
         checkout.setTotalPrice(this.totalPrice);
         checkout.setPaymentStatus(this.paymentStatus);

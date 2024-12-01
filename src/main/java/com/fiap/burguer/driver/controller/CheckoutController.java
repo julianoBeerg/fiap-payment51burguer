@@ -4,12 +4,12 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.CheckoutUseCases;
 import com.fiap.burguer.driver.dto.CheckoutRequest;
 import com.fiap.burguer.driver.dto.CheckoutResponse;
-import com.fiap.burguer.driver.dto.ErrorResponse;
 import com.fiap.burguer.api.CheckoutApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,45 +34,49 @@ public class CheckoutController implements CheckoutApi {
     }
 
     @Override
-    public ResponseEntity<?> searchCheckouts(Integer orderId, StatusOrder status, Integer clientId, String cpf, String authorizationHeader) {
+    public ResponseEntity<List<CheckoutResponse>> searchCheckouts(
+            Integer orderId,
+            StatusOrder status,
+            Integer clientId,
+            String cpf,
+            String authorizationHeader) {
         try {
             List<CheckoutResponse> responses = checkoutUseCases.searchCheckouts(orderId, status, clientId, cpf, authorizationHeader);
             return ResponseEntity.ok(responses);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(
-                    HttpStatus.NOT_FOUND.value(),
-                    e.getMessage(),
-                    System.currentTimeMillis()
-            ));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum checkout encontrado!", e);
         }
     }
 
+
     @Override
-    public ResponseEntity<?> createCheckout(CheckoutRequest checkoutRequest, String authorizationHeader) {
-        StatusOrder statusOrder = StatusOrder.WAITINGPAYMENT;
+    public ResponseEntity<CheckoutResponse> createCheckout(
+            CheckoutRequest checkoutRequest,
+            String authorizationHeader) {
         try {
+            StatusOrder statusOrder = StatusOrder.WAITINGPAYMENT;
+
             CheckoutResponse response = checkoutUseCases.createCheckout(checkoutRequest, statusOrder, authorizationHeader);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(
-                    HttpStatus.BAD_REQUEST.value(),
-                    e.getMessage(),
-                    System.currentTimeMillis()
-            ));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao processar pagamento!", e);
         }
     }
 
+
     @Override
-    public ResponseEntity<?> updateCheckoutStatus(int orderId, StatusOrder newStatus, String authorizationHeader) {
+    public ResponseEntity<CheckoutResponse> updateCheckoutStatus(
+            int orderId,
+            StatusOrder newStatus,
+            String authorizationHeader) {
         try {
             CheckoutResponse response = checkoutUseCases.updateCheckoutStatus(orderId, newStatus, authorizationHeader);
             return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(
-                    HttpStatus.BAD_REQUEST.value(),
-                    e.getMessage(),
-                    System.currentTimeMillis()
-            ));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro inesperado!", e);
         }
     }
+
 }

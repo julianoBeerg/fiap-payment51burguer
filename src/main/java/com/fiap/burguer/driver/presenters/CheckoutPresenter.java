@@ -1,4 +1,5 @@
 package com.fiap.burguer.driver.presenters;
+
 import com.fiap.burguer.driver.dto.CheckoutResponse;
 import com.fiap.burguer.core.domain.CheckOut;
 

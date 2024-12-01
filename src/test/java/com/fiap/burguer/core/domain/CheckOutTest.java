@@ -7,7 +7,7 @@ class CheckOutTest {
 
     @Test
     void testSetIdAndGetId() {
-        CheckOut checkOut = new CheckOut();
+        CheckOut checkOut = CheckOut.createCheckOut();
 
         String expectedId = "12345";
         checkOut.setId(expectedId);

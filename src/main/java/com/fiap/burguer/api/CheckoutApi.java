@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/checkout")
 public interface CheckoutApi {
 
@@ -29,7 +31,7 @@ public interface CheckoutApi {
             @ApiResponse(responseCode = "200", description = "Consulta de checkouts realizada com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Nenhum checkout encontrado!")
     })
-    ResponseEntity<?> searchCheckouts(
+    ResponseEntity<List<CheckoutResponse>> searchCheckouts(
             @Parameter(description = "ID do pedido") @RequestParam(required = false) Integer orderId,
             @Parameter(description = "Status do pagamento") @RequestParam(required = false) StatusOrder status,
             @Parameter(description = "ID do cliente") @RequestParam(required = false) Integer clientId,
@@ -43,10 +45,10 @@ public interface CheckoutApi {
             @ApiResponse(responseCode = "400", description = "Erro ao processar pagamento!"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado!")
     })
-    ResponseEntity<?> createCheckout(
+    ResponseEntity<CheckoutResponse> createCheckout(
             @RequestBody @Valid CheckoutRequest checkoutRequest,
             @RequestHeader("Authorization") String authorizationHeader
-         );
+    );
 
     @PutMapping("/update-status/{order_id}")
     @Operation(summary = "Atualiza o status de um checkout existente")
@@ -55,7 +57,8 @@ public interface CheckoutApi {
             @ApiResponse(responseCode = "400", description = "Erro ao atualizar status!"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado!")
     })
-    public ResponseEntity<?> updateCheckoutStatus(
+
+    public ResponseEntity<CheckoutResponse> updateCheckoutStatus(
             @Parameter(description = "ID do pedido (order_id)") @PathVariable("order_id") int orderId,
             @Parameter(description = "Novo status do pagamento") @RequestParam StatusOrder newStatus,
             @RequestHeader("Authorization") String authorizationHeader);

@@ -1,29 +1,37 @@
 package com.fiap.burguer.config;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
+import com.mongodb.*;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import org.bson.Document;
 
 @Configuration
-public class MongoConfig extends AbstractMongoClientConfiguration {
+public class MongoConfig {
 
-    @Override
-    protected String getDatabaseName() {
-        return "51burguer";
-    }
+    public static void main(String[] args) {
+        String connectionString  ="mongodb+srv://${{ secrets.MONGO_USER }}:${{ secrets.MONGO_PASSWORD }}@${{ secrets.MONGO_URL }}";
 
-    @Override
-    public MongoClient mongoClient() {
-        String connectionUri = "mongodb://mongo:mongo@db:27017";
-        ConnectionString connectionString = new ConnectionString(connectionUri);
 
-        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
+        ServerApi serverApi = ServerApi.builder()
+                .version(ServerApiVersion.V1)
                 .build();
 
-        return MongoClients.create(mongoClientSettings);
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString(connectionString))
+                .serverApi(serverApi)
+                .build();
+
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            try {
+                MongoDatabase database = mongoClient.getDatabase("admin");
+                database.runCommand(new Document("ping", 1));
+            } catch (MongoException e) {
+                e.printStackTrace();
+            }
+        } catch (MongoClientException e) {
+            e.printStackTrace();
+        }
     }
 }

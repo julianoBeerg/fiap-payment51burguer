@@ -32,8 +32,8 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .info(new io.swagger.v3.oas.models.info.Info()
-                        .title("FIAP - Burger API")
-                        .contact(new Contact().name("Grupo 51").url("https://github.com/GuiMM/fiap-51burguer"))
+                        .title("FIAP - Checkout Burger API")
+                        .contact(new Contact().name("Grupo 51").url("https://github.com/julianoBeerg/fiap-payment51burguer"))
                         .version("2.0.0")
                         .description("API for managing burgers\n\nContact:\n\n" + contactsDescription));
     }

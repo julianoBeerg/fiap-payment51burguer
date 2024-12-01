@@ -11,8 +11,6 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private String DEFAULT_ERROR = "Erro na requisição, por favor contacte o suporte";
-
     @ExceptionHandler(ImpossibleToCheckoutException.class)
     public ResponseEntity<ErrorResponse> handleImpossibleToCheckoutException(ImpossibleToCheckoutException ex, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(
@@ -55,9 +53,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
+        String defaultError = "Erro na requisição, por favor contacte o suporte";
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                DEFAULT_ERROR,
+                defaultError,
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);

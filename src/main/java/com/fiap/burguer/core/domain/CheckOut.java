@@ -1,5 +1,6 @@
 package com.fiap.burguer.core.domain;
 import com.fiap.burguer.core.application.enums.StatusOrder;
+
 import java.time.LocalDateTime;
 
 public class CheckOut {
@@ -12,12 +13,11 @@ public class CheckOut {
     private Integer clientId;
     private String cpf;
 
-    public String getId() {
-        return id;
+    private CheckOut() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public static CheckOut createCheckOut() {
+        return new CheckOut();
     }
 
     public int getOrderId() {
@@ -28,11 +28,11 @@ public class CheckOut {
         this.orderId = orderId;
     }
 
-    public LocalDateTime  getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDateTime  dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -44,14 +44,13 @@ public class CheckOut {
         this.paymentStatus = paymentStatus;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
 
     public Integer getClientId() {
         return clientId;
@@ -69,4 +68,11 @@ public class CheckOut {
         this.cpf = cpf;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

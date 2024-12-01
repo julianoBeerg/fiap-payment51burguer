@@ -4,7 +4,9 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.domain.CheckOut;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -14,7 +16,6 @@ class CheckOutEntityTest {
     void testGetterAndSetter() {
         CheckOutEntity entity = new CheckOutEntity();
 
-        // Testando os setters
         entity.setOrderId(123);
         entity.setTotalPrice(250.75);
         entity.setPaymentStatus(StatusOrder.WAITINGPAYMENT);
@@ -22,7 +23,6 @@ class CheckOutEntityTest {
         entity.setCpf("12345678901");
         entity.setDateCreated(LocalDateTime.now());
 
-        // Testando os getters
         assertEquals(123, entity.getOrderId());
         assertEquals(250.75, entity.getTotalPrice());
         assertEquals(StatusOrder.WAITINGPAYMENT, entity.getPaymentStatus());
@@ -80,19 +80,16 @@ class CheckOutEntityTest {
 
     @Test
     void testAllArgsConstructor() {
-        // Criação de um valor fixo para data, para que o teste não dependa de um valor dinâmico.
         LocalDateTime fixedDate = LocalDateTime.of(2024, 11, 27, 10, 30, 0, 0);
 
-        // Usando o construtor com todos os parâmetros
         CheckOutEntity entity = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", fixedDate);
 
-        // Verificando se o construtor preencheu corretamente todos os campos
         assertEquals(123, entity.getOrderId());
         assertEquals(250.75, entity.getTotalPrice());
         assertEquals(StatusOrder.WAITINGPAYMENT, entity.getPaymentStatus());
         assertEquals(1, entity.getClientId());
         assertEquals("12345678901", entity.getCpf());
-        assertEquals(fixedDate, entity.getDateCreated());  // Comparando com a data fixa
+        assertEquals(fixedDate, entity.getDateCreated());
     }
 
 
@@ -100,8 +97,6 @@ class CheckOutEntityTest {
     void testToStringMethod() {
         CheckOutEntity entity = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", LocalDateTime.now());
 
-        String expectedToString = "CheckOutEntity(id=null, orderId=123, clientId=1, dateCreated=" + entity.getDateCreated() +
-                ", cpf=12345678901, paymentStatus=WAITINGPAYMENT, totalPrice=250.75)";
         assertTrue(entity.toString().contains("CheckOutEntity"));
         assertTrue(entity.toString().contains("orderId=123"));
         assertTrue(entity.toString().contains("clientId=1"));

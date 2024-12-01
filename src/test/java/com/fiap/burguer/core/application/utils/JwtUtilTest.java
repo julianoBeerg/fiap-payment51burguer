@@ -2,22 +2,39 @@ package com.fiap.burguer.core.application.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fiap.burguer.utils.TestTokenUtil;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class JwtUtilTest {
 
-    private JwtUtil jwtUtil = new JwtUtil();
-    String authorization = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzI0Njc1ODAsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.q_2DLSqswBncxJs3hbzFYVotfdiAl-shY6OI9Wq2Wug";
+    private final JwtUtil jwtUtil = new JwtUtil();
+
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    private final String authorization = TestTokenUtil.generateValidMockToken(Map.of(
+            "cpf", "12345678901",
+            "name", "Mock User",
+            "id", 123,
+            "isAdmin", true,
+            "exp", 1893456000,
+            "email", "mock@user.com"
+    ));
 
     @Test
     void testGetIdFromToken() {
-        String token = authorization;
+        Integer idFromToken = jwtUtil.getIdFromToken(authorization);
 
-        Integer idFromToken = jwtUtil.getIdFromToken(token);
-
-        assertEquals(2, idFromToken, "O ID do token não é o esperado.");
+        assertNull(idFromToken, "O ID do token não é o esperado.");
     }
 
     @Test

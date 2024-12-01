@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RequestExceptionTest {
+class RequestExceptionTest {
 
     @Test
     void testRequestException() {

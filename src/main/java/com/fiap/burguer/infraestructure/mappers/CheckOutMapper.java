@@ -10,8 +10,7 @@ public class CheckOutMapper {
             return null;
         }
 
-        CheckOut checkout = new CheckOut();
-        checkout.setId(entity.getId());
+        CheckOut checkout = CheckOut.createCheckOut();
         checkout.setOrderId(entity.getOrderId());
         checkout.setPaymentStatus(entity.getPaymentStatus());
         checkout.setTotalPrice(entity.getTotalPrice());

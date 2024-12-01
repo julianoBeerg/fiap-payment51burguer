@@ -1,9 +1,8 @@
 package com.fiap.burguer.core.application.utils;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 public class JwtUtil {
@@ -23,8 +22,8 @@ public class JwtUtil {
 
     public String getCpfFromToken(String token) {
         try {
-        DecodedJWT decodedJWT = decodeToken(token);
-        return decodedJWT.getClaim("cpf").asString();
+            DecodedJWT decodedJWT = decodeToken(token);
+            return decodedJWT.getClaim("cpf").asString();
         } catch (Exception e) {
             return null;
         }
@@ -60,6 +59,5 @@ public class JwtUtil {
         } catch (Exception e) {
             return false;
         }
-
     }
 }

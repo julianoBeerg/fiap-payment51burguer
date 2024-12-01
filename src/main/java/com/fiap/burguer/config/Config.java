@@ -17,9 +17,12 @@ public class Config {
     @Autowired
     CheckOutRepository checkOutRepository;
 
+    @Autowired
+    OrderAdapter orderAdapter;
+
     @Bean
     public CheckoutUseCases getCheckoutService() {
-        return new CheckoutUseCases(checkOutRepository, authenticationAdapter);
+        return new CheckoutUseCases(checkOutRepository, authenticationAdapter,orderAdapter);
     }
 
 

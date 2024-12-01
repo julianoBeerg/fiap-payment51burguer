@@ -12,7 +12,6 @@ class CheckOutMapperTest {
     @Test
     void testToDomainWithValidEntity() {
         CheckOutEntity entity = new CheckOutEntity();
-        entity.setId("1");
         entity.setOrderId(100);
         entity.setPaymentStatus(StatusOrder.WAITINGPAYMENT);
         entity.setTotalPrice(99.99);
@@ -23,7 +22,6 @@ class CheckOutMapperTest {
         CheckOut domain = CheckOutMapper.toDomain(entity);
 
         assertNotNull(domain);
-        assertEquals(entity.getId(), domain.getId());
         assertEquals(entity.getOrderId(), domain.getOrderId());
         assertEquals(entity.getPaymentStatus(), domain.getPaymentStatus());
         assertEquals(entity.getTotalPrice(), domain.getTotalPrice());
@@ -40,7 +38,7 @@ class CheckOutMapperTest {
 
     @Test
     void testToEntityWithValidDomain() {
-        CheckOut domain = new CheckOut();
+        CheckOut domain = CheckOut.createCheckOut();
         domain.setId("1");
         domain.setOrderId(100);
         domain.setPaymentStatus(StatusOrder.WAITINGPAYMENT);
