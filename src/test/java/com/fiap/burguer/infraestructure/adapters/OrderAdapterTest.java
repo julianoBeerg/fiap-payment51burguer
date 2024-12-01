@@ -4,6 +4,7 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.driver.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,6 +18,9 @@ class OrderAdapterTest {
     private OrderAdapter orderAdapter;
     private RestTemplate restTemplate;
     private final String authorizationHeader = "Bearer test-token";
+
+    @Value("${base.url-order}")
+    private String urlOrder;
 
     @BeforeEach
     void setUp() throws NoSuchFieldException, IllegalAccessException {
@@ -38,7 +42,7 @@ class OrderAdapterTest {
         ResponseEntity<OrderResponse> responseEntity = new ResponseEntity<>(expectedResponse, HttpStatus.OK);
 
         when(restTemplate.exchange(
-                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId), // URL com o orderId
+                eq(urlOrder + "/orders/" + orderId), // URL com o orderId
                 eq(HttpMethod.GET),
                 any(HttpEntity.class),
                 eq(OrderResponse.class)
@@ -57,7 +61,7 @@ class OrderAdapterTest {
         StatusOrder newStatus = StatusOrder.APPROVEDPAYMENT;
 
         when(restTemplate.exchange(
-                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
+                eq(urlOrder + "/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
                 eq(HttpMethod.PUT),
                 any(HttpEntity.class),
                 eq(Void.class)
@@ -66,7 +70,7 @@ class OrderAdapterTest {
         orderAdapter.updateOrderStatus(orderId, newStatus, authorizationHeader);
 
         verify(restTemplate, times(1)).exchange(
-                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
+                eq(urlOrder + "/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
                 eq(HttpMethod.PUT),
                 any(HttpEntity.class),
                 eq(Void.class)

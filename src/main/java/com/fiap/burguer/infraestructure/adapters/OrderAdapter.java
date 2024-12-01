@@ -4,6 +4,7 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.IOrderPort;
 import com.fiap.burguer.driver.dto.OrderResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,9 @@ import org.springframework.web.client.RestTemplate;
 public class OrderAdapter implements IOrderPort {
     protected final RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${base.url-order}")
+    private String urlOrder;
+
 
     @Override
     public OrderResponse getOrderById(int orderId, String authorizationHeader) {
@@ -23,7 +27,7 @@ public class OrderAdapter implements IOrderPort {
             HttpEntity<?> entity = new HttpEntity<>(headers);
 
             ResponseEntity<OrderResponse> response = restTemplate.exchange(
-                    "${{ secrets.ORDER_BASE_URL }}/orders/" + orderId,
+                    urlOrder + "/orders/" + orderId,
                     HttpMethod.GET,
                     entity,
                     OrderResponse.class);
@@ -38,7 +42,7 @@ public class OrderAdapter implements IOrderPort {
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         restTemplate.exchange(
-                "${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
+                urlOrder + "/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
                 HttpMethod.PUT,
                 entity,
                 Void.class);

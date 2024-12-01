@@ -5,14 +5,17 @@ import com.mongodb.*;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.bson.Document;
 
 @Configuration
 public class MongoConfig {
 
+    @Value("${base.database}")
+    private static String databaseConnection;
+
     public static void main(String[] args) {
-        String connectionString  ="mongodb+srv://${{ secrets.MONGO_USER }}:${{ secrets.MONGO_PASSWORD }}@${{ secrets.MONGO_URL }}";
 
 
         ServerApi serverApi = ServerApi.builder()
@@ -20,7 +23,7 @@ public class MongoConfig {
                 .build();
 
         MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(connectionString))
+                .applyConnectionString(new ConnectionString(databaseConnection))
                 .serverApi(serverApi)
                 .build();
 
@@ -29,7 +32,7 @@ public class MongoConfig {
                 MongoDatabase database = mongoClient.getDatabase("admin");
                 database.runCommand(new Document("ping", 1));
             } catch (MongoException e) {
-               throw new RequestException("Erro ao criar o database");
+                throw new RequestException("Erro ao criar o database");
             }
         } catch (MongoClientException e) {
             throw new RequestException("Erro ao criar o database");
