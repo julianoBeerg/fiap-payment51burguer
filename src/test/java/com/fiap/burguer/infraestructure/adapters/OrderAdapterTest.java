@@ -38,7 +38,7 @@ class OrderAdapterTest {
         ResponseEntity<OrderResponse> responseEntity = new ResponseEntity<>(expectedResponse, HttpStatus.OK);
 
         when(restTemplate.exchange(
-                eq("${{ secrets.MONGO_USER }}/orders/" + orderId), // URL com o orderId
+                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId), // URL com o orderId
                 eq(HttpMethod.GET),
                 any(HttpEntity.class),
                 eq(OrderResponse.class)
@@ -57,7 +57,7 @@ class OrderAdapterTest {
         StatusOrder newStatus = StatusOrder.APPROVEDPAYMENT;
 
         when(restTemplate.exchange(
-                eq("${{ secrets.MONGO_USER }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
+                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
                 eq(HttpMethod.PUT),
                 any(HttpEntity.class),
                 eq(Void.class)
@@ -66,7 +66,7 @@ class OrderAdapterTest {
         orderAdapter.updateOrderStatus(orderId, newStatus, authorizationHeader);
 
         verify(restTemplate, times(1)).exchange(
-                eq("${{ secrets.MONGO_USER }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
+                eq("${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name()),
                 eq(HttpMethod.PUT),
                 any(HttpEntity.class),
                 eq(Void.class)
