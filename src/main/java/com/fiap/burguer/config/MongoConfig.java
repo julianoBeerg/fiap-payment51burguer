@@ -1,5 +1,6 @@
 package com.fiap.burguer.config;
 
+import com.fiap.burguer.core.application.exception.RequestException;
 import com.mongodb.*;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -28,10 +29,10 @@ public class MongoConfig {
                 MongoDatabase database = mongoClient.getDatabase("admin");
                 database.runCommand(new Document("ping", 1));
             } catch (MongoException e) {
-                e.printStackTrace();
+               throw new RequestException("Erro ao criar o database");
             }
         } catch (MongoClientException e) {
-            e.printStackTrace();
+            throw new RequestException("Erro ao criar o database");
         }
     }
 }
