@@ -1,6 +1,7 @@
 package com.fiap.burguer.infraestructure.adapters;
 
 import com.fiap.burguer.core.application.enums.StatusOrder;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.IOrderPort;
 import com.fiap.burguer.driver.dto.OrderResponse;
 import org.springframework.http.HttpEntity;
@@ -13,12 +14,11 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class OrderAdapter implements IOrderPort {
-    private final RestTemplate restTemplate = new RestTemplate();
+    protected final RestTemplate restTemplate = new RestTemplate();
 
 
     @Override
     public OrderResponse getOrderById(int orderId, String authorizationHeader) {
-        try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", authorizationHeader);
             HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -30,9 +30,6 @@ public class OrderAdapter implements IOrderPort {
                     OrderResponse.class);
 
             return response.getBody();
-        } catch (HttpClientErrorException.NotFound e) {
-            return null;
-        }
     }
 
     @Override

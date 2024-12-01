@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.LocalDateTime;
 
 @Document(collection = "checkout_order")
-@Data
 @NoArgsConstructor
 public class CheckOutEntity {
 
@@ -54,6 +53,62 @@ public class CheckOutEntity {
         checkout.setCpf(this.cpf);
         checkout.setDateCreated(this.dateCreated);
         return checkout;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public StatusOrder getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(StatusOrder paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }
 

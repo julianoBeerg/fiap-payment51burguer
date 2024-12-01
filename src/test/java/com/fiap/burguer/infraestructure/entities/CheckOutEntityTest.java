@@ -92,26 +92,6 @@ class CheckOutEntityTest {
         assertEquals(fixedDate, entity.getDateCreated());
     }
 
-
-    @Test
-    void testToStringMethod() {
-        CheckOutEntity entity = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", LocalDateTime.now());
-
-        assertTrue(entity.toString().contains("CheckOutEntity"));
-        assertTrue(entity.toString().contains("orderId=123"));
-        assertTrue(entity.toString().contains("clientId=1"));
-    }
-
-    @Test
-    void testEqualsAndHashCode() {
-        CheckOutEntity entity1 = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", LocalDateTime.now());
-        CheckOutEntity entity2 = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", entity1.getDateCreated());
-
-        assertEquals(entity1, entity2);
-
-        assertEquals(entity1.hashCode(), entity2.hashCode());
-    }
-
     @Test
     void testNotEquals() {
         CheckOutEntity entity1 = new CheckOutEntity(123, 250.75, StatusOrder.WAITINGPAYMENT, 1, "12345678901", LocalDateTime.now());
@@ -121,4 +101,5 @@ class CheckOutEntityTest {
 
         assertNotEquals(entity1.hashCode(), entity2.hashCode());
     }
+
 }

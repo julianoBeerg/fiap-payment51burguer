@@ -71,7 +71,7 @@ public class CheckoutUseCases {
         authenticationPort.validateAuthorizationHeader(authorizationHeader);
 
         Integer clientId = authenticationPort.getClientIdFromToken(authorizationHeader);
-        String cpf = authenticationPort.getCpfFromToken(authorizationHeader).replaceAll("\\D", "");
+        String cpf = authenticationPort.getCpfFromToken(authorizationHeader);
 
         CheckOutEntity checkoutEntity = new CheckOutEntity(checkoutRequest.getOrderId(), checkoutRequest.getTotalPrice(), statusOrder, clientId, cpf, LocalDateTime.now());
         checkOutRepository.save(checkoutEntity);
