@@ -24,7 +24,7 @@ public class OrderAdapter implements IOrderPort {
             HttpEntity<?> entity = new HttpEntity<>(headers);
 
             ResponseEntity<OrderResponse> response = restTemplate.exchange(
-                    "${{ secrets.MONGO_USER }}/orders/" + orderId,
+                    "${{ secrets.ORDER_BASE_URL }}/orders/" + orderId,
                     HttpMethod.GET,
                     entity,
                     OrderResponse.class);
@@ -39,7 +39,7 @@ public class OrderAdapter implements IOrderPort {
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         restTemplate.exchange(
-                "${{ secrets.MONGO_USER }}/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
+                "${{ secrets.ORDER_BASE_URL }}/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
                 HttpMethod.PUT,
                 entity,
                 Void.class);
