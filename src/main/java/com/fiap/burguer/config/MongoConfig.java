@@ -12,7 +12,7 @@ import org.bson.Document;
 public class MongoConfig {
 
     public static void main(String[] args) {
-        String connectionString  ="mongodb+srv://${{ secrets.MONGO_USER }}:${{ secrets.MONGO_PASSWORD }}@${{ secrets.MONGO_URL }}";
+        String connectionString  ="mongodb+srv://123:123@$123";
 
 
         ServerApi serverApi = ServerApi.builder()
