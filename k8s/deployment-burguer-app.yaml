@@ -23,26 +23,26 @@ spec:
     spec:
       containers:
         - env:
-            - name: POSTGRES_URL
+            - name: MONGO_URL
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: POSTGRES_URL
-            - name: POSTGRES_DATABASE
+                  key: MONGO_URL
+            - name: MONGO_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: POSTGRES_DATABASE
-            - name: POSTGRES_USER
+                  key: MONGO_DATABASE
+            - name: MONGO_USER
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: POSTGRES_USER
-            - name: POSTGRES_PASSWORD
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: POSTGRES_PASSWORD
+                  key: MONGO_PASSWORD
           image: 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
           imagePullPolicy: IfNotPresent
           name: payment-51-burguer-app
