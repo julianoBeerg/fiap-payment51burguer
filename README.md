@@ -70,8 +70,6 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 ## ✔️ Técnicas e tecnologias utilizadas
 
-**Faça uma lista de tecnologias e técnicas utilizadas (a justificativa e descrição são opcionais)**:
-
 - `Aplicação`: Java 22
 - `Testes`: junit5
 - `Banco de dados`: Postgres
