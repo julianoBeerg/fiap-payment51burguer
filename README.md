@@ -73,6 +73,7 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 **Faça uma lista de tecnologias e técnicas utilizadas (a justificativa e descrição são opcionais)**:
 
 - `Aplicação`: Java 22
+- `Testes`: junit5
 - `Banco de dados`: Postgres
 - `Arquitetura`: Clean Architecture
 - `Containerização`: Docker
@@ -91,7 +92,7 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 - [**MER - Modelo de entidade relacionamento**](https://drive.google.com/file/d/1-e6vfEpsNNS0aMtH_256b9I7Zsa-4o-2/view)
 
-- [**Documentação da Modelagem de dados**](https://drive.google.com/file/d/1FF9qA6Z8XMe3DRzVudoB_-Rd9O4iAeow/view?usp=drive_link)
+- [**Documentação da Modelagem de dados**](https://drive.google.com/file/d/1xu699uPLNKy73oYwtUhJYNGyGYmoQQeZ/view?usp=sharing)
 
 ## 🛠️ Abrir e rodar o projeto
 
