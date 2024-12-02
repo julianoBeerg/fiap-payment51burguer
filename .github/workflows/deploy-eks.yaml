@@ -38,7 +38,7 @@ jobs:
       - name: Push to ECR
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 742943855162.dkr.ecr.us-east-1.amazonaws.com
-          docker push 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51/payment-51-burguer-app:latest
+          docker push 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
           
 
       - name: Kube Secrets
