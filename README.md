@@ -118,26 +118,21 @@ Após a instalação executar os comandos ordenados abaixo na pasta raiz da apli
 
     - kubectl apply -f .\k8s\metrics.yaml
 
-
 3 . **Aplicar Deployment do Banco de Dados:**
 
      - kubectl apply -f .\k8s\deployment-db.yaml
-
 
 4 . **Aplicar Service do Banco de Dados:**
 
      - kubectl apply -f .\k8s\service-db.yaml
 
-
 5 . **Aplicar Deployment da Aplicação:**
 
      - kubectl apply -f .\k8s\deployment-burguer-app.yaml
 
-
 6 . **Aplicar Service da Aplicação:**
 
      - kubectl apply -f .\k8s\service-burguer-app.yaml
-
 
 7 . **Aplicar Horizontal Pod Autoscaler:**
 
