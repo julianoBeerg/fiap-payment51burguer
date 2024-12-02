@@ -32,7 +32,7 @@ jobs:
       - name: Package & Tag
         run: | 
           docker compose -f Docker/docker-compose.yml build web
-          docker tag docker.io/library/payment-51-burguer-app:latest ${{ secrets.REPO_ECR }}/payment-51-burguer-app-image:latest
+          docker tag payment-51-burguer-app:latest ${{ secrets.REPO_ECR }}/payment-51-burguer-app-image:latest
           docker ps
 
       - name: Push to ECR
