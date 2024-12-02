@@ -82,17 +82,17 @@ public class CheckoutUseCases {
     public CheckoutResponse updateCheckoutStatus(int orderId, StatusOrder newStatus, String authorizationHeader) {
         authenticationPort.validateAuthorizationHeader(authorizationHeader);
 
-//        OrderResponse orderResponse = iOrderPort.getOrderById(orderId, authorizationHeader);
-//        if (orderResponse == null) {
-//            throw new ResourceNotFoundException("Pedido não encontrado!");
-//        }
-//
-//        String currentStatus = orderResponse.getStatus();
-//        if (!currentStatus.equalsIgnoreCase(StatusOrder.WAITINGPAYMENT.toString()) &&
-//                !currentStatus.equalsIgnoreCase(StatusOrder.REJECTEDPAYMENT.toString()) &&
-//                !currentStatus.equalsIgnoreCase(StatusOrder.APPROVEDPAYMENT.toString())) {
-//            throw new ImpossibleToCheckoutException("O status atual do pedido não permite atualizações!");
-//        }
+        OrderResponse orderResponse = iOrderPort.getOrderById(orderId, authorizationHeader);
+        if (orderResponse == null) {
+            throw new ResourceNotFoundException("Pedido não encontrado!");
+        }
+
+        String currentStatus = orderResponse.getStatus();
+        if (!currentStatus.equalsIgnoreCase(StatusOrder.WAITINGPAYMENT.toString()) &&
+                !currentStatus.equalsIgnoreCase(StatusOrder.REJECTEDPAYMENT.toString()) &&
+                !currentStatus.equalsIgnoreCase(StatusOrder.APPROVEDPAYMENT.toString())) {
+            throw new ImpossibleToCheckoutException("O status atual do pedido não permite atualizações!");
+        }
 
         CheckOutEntity checkout = checkOutRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado no MongoDB!"));
