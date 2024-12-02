@@ -58,14 +58,14 @@ spec:
               httpHeaders:
                 - name: Custom-Header
                   value: Awesome
-            initialDelaySeconds: 30
-            periodSeconds: 3
+            initialDelaySeconds: 60
+            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /manage/health
               port: 80
-            initialDelaySeconds: 30
-            periodSeconds: 3
+            initialDelaySeconds: 60
+            periodSeconds: 10
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
