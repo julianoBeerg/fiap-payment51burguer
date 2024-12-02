@@ -134,6 +134,7 @@ Após a instalação executar os comandos ordenados abaixo na pasta raiz da apli
 
 
 ## 📚 Mais informações do curso
+
 **Pós Tech - Turma 6SOAT**
 
 **Tech challenge 2: Refatoração do projeto seguindo os padrões de clean code e clean architecture e orquestração de containers de forma escalável**
