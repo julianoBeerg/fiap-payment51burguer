@@ -1,6 +1,7 @@
 # Fiap 51 Burguer - Checkout de pagamento
 
 Sistema de pedidos de lanche. Quarto tech challenge do curso de Pós Tech - turma 6SOAT de Software Architecture para aplicar conceitos Microserviço.
+Microserviço de sistema de pagamento
 
 ## 👨‍🔧👩‍🔧 Integrantes
 Carlos Jafet - RM 354076 - cjafet07@gmail.com
@@ -20,14 +21,19 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 ### Repositórios no GitHub
 
-- **Infraestrutura Kubernetes com Terraform:**  
+- **Infraestrutura SQL (postgres) Kubernetes com Terraform:**  
   [fiap-k8s51burguer](https://github.com/GuiMM/fiap-k8s51burguer)
 
-- **Infraestrutura de Banco de Dados Gerenciáveis com Terraform:**  
+- **Infraestrutura de Banco de Dados SQL (postgres) Gerenciáveis com Terraform:**  
   [fiap-db51burguer](https://github.com/GuiMM/fiap-db51burguer)
 
-- **Aplicação Executada no Kubernetes:**  
-  [fiap-51burguer](https://github.com/GuiMM/fiap-51burguer)
+- **Infraestrutura de Banco de Dados NoSQL (mongodb) Gerenciáveis com Terraform:**  
+  [fiap-atlasdb51burguer](https://github.com/GuiMM/fiap-atlasdb51burguer)
+  
+- **Link dos repositório dos microserviços aplicação que é executada no Kubernetes:**  
+  - [Pedido e produto (Postgres-SQL)](https://github.com/Isa-Bellinazzi/fiap-product-and-order51burguer)
+  - [Cliente (Postgres-SQL)](https://github.com/Tnery81/fiap-client51burger)
+  - [Checkout (Mondo - NoSQL)](https://github.com/julianoBeerg/fiap-payment51burguer)
 
 - **Funções Lambda:**  
   [fiap-lambda51burguer](https://github.com/julianoBeerg/fiap-lambda51burguer)
@@ -43,6 +49,9 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 - **Vídeo da Terceira Fase do Projeto:**  
   [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
 
+- **Vídeo da quarta Fase do Projeto:**  
+  [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
+
 - **PDF com Vídeo, Diagramas e Modelagens:**  
   [Documento Google](https://docs.google.com/document/d/1Ay-OWOHbjec_wPjQI0ntPJny1N1lfZJFQqEHw97hONQ/edit?usp=drive_link)
 
@@ -50,25 +59,11 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
   [Documento Google](https://docs.google.com/document/d/1B933OMeg6z2DDZ-wWG-_dW9d0Q6TT2UhvOLmSbwQLnw/edit)
 
 
-## 🔨 Funcionalidades do projeto
-
-    - CRUD Cliente.
-                      
-    - Identificação do Cliente via CPF.
- 
-    - CRUD produtos.
-                      
-    - Buscar produtos por categoria.
+## 🔨 Funcionalidades do microserviço de checkout
                        
     - Fake checkout, apenas enviar os produtos escolhidos para a fila. O checkout é a finalização do pedido.
 
-    - CRUD pedidos.
-                     
-    - Listar os pedidos.
-
     - Checkout do pedido que deve receber os produtos solicitados e retornar a identificação do pedido.
-
-    - Consultar status do pagamento do pedido.
 
     - Webhook recebendo confirmação de pagamento.
 
