@@ -5,50 +5,75 @@ metadata:
     app: db
   name: db
 spec:
+  progressDeadlineSeconds: 600
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: db
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: db
     spec:
       containers:
-        - name: mongodb
-          image: mongo:latest
-          ports:
-            - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
+        - env:
+            - name: POSTGRES_URL
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: MONGO_USER
-            - name: MONGO_INITDB_ROOT_PASSWORD
+                  key: POSTGRES_URL
+            - name: POSTGRES_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: secret-burguer51
-                  key: MONGO_PASSWORD
+                  key: POSTGRES_DATABASE
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret-burguer51
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-burguer51
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret-burguer51
+                  key: POSTGRES_ROOT_USER
+            - name: POSTGRES_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-burguer51
+                  key: POSTGRES_ROOT_PASSWORD
+          image: postgres
+          name: postgres
           volumeMounts:
-            - name: mongo-data
-              mountPath: /data/db
-          livenessProbe:
-            exec:
-              command:
-                - mongo
-                - "--eval"
-                - "db.adminCommand('ping')"
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          readinessProbe:
-            exec:
-              command:
-                - mongo
-                - "--eval"
-                - "db.adminCommand('ping')"
-            initialDelaySeconds: 30
-            periodSeconds: 10
+            - name: postgres-initdb
+              mountPath: /docker-entrypoint-initdb.d
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "500m"
+            limits:
+              memory: "2048Mi"
+              cpu: "2"
+          imagePullPolicy: IfNotPresent
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
       volumes:
-        - name: mongo-data
-          emptyDir: {}
+        - name: postgres-initdb
+          configMap:
+            name: burguer-app-config
