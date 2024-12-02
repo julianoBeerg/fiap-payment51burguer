@@ -14,9 +14,9 @@ spec:
   ipFamilyPolicy: SingleStack
   ports:
   - nodePort: 30789
-    port: 8080
+    port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
   selector:
     app: burguer-app
   sessionAffinity: None
