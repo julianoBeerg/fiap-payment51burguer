@@ -27,7 +27,7 @@ public class OrderAdapter implements IOrderPort {
             HttpEntity<?> entity = new HttpEntity<>(headers);
 
             ResponseEntity<OrderResponse> response = restTemplate.exchange(
-                    urlOrder + "/orders/" + orderId,
+                     "http://a30ac0df094954ae7a136461057e6f2c-487494363.us-east-1.elb.amazonaws.com/orders/" + orderId,
                     HttpMethod.GET,
                     entity,
                     OrderResponse.class);
@@ -42,7 +42,7 @@ public class OrderAdapter implements IOrderPort {
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         restTemplate.exchange(
-                urlOrder + "/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
+                 "http://a30ac0df094954ae7a136461057e6f2c-487494363.us-east-1.elb.amazonaws.com/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
                 HttpMethod.PUT,
                 entity,
                 Void.class);
