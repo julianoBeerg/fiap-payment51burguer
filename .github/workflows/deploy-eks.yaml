@@ -31,7 +31,7 @@ jobs:
 
       - name: Package & Tag
         run: | 
-          docker compose -f Docker/docker-compose.yml build web
+          docker compose -f Docker/docker-compose.yml build web --no-cache
           docker tag payment-51-burguer-app:latest 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
           docker ps
 
