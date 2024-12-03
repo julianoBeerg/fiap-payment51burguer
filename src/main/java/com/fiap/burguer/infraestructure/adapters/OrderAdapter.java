@@ -1,7 +1,6 @@
 package com.fiap.burguer.infraestructure.adapters;
 
 import com.fiap.burguer.core.application.enums.StatusOrder;
-import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.IOrderPort;
 import com.fiap.burguer.driver.dto.OrderResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +26,7 @@ public class OrderAdapter implements IOrderPort {
             HttpEntity<?> entity = new HttpEntity<>(headers);
 
             ResponseEntity<OrderResponse> response = restTemplate.exchange(
-                     "http://a30ac0df094954ae7a136461057e6f2c-487494363.us-east-1.elb.amazonaws.com/orders/" + orderId,
+                    urlOrder + "/orders/" + orderId,
                     HttpMethod.GET,
                     entity,
                     OrderResponse.class);
@@ -42,7 +41,7 @@ public class OrderAdapter implements IOrderPort {
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         restTemplate.exchange(
-                 "http://a30ac0df094954ae7a136461057e6f2c-487494363.us-east-1.elb.amazonaws.com/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
+                urlOrder + "/orders/" + orderId + "/status?newStatus=" + newStatus.name(),
                 HttpMethod.PUT,
                 entity,
                 Void.class);

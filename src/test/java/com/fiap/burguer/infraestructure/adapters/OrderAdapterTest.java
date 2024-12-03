@@ -20,7 +20,7 @@ class OrderAdapterTest {
     private final String authorizationHeader = "Bearer test-token";
 
     @Value("${base.url-order}")
-    private String urlOrder = "http://a30ac0df094954ae7a136461057e6f2c-487494363.us-east-1.elb.amazonaws.com";
+    private String urlOrder;
 
     @BeforeEach
     void setUp() throws NoSuchFieldException, IllegalAccessException {
