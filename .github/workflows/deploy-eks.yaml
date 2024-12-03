@@ -56,9 +56,9 @@ jobs:
         run: |
           kubectl apply -f k8s/configmap-burguer-app.yaml
           kubectl apply -f k8s/metrics.yaml
-          kubectl apply -f mongodb-pvc.yaml
-          kubectl apply -f deployment-mongo.yaml
-          kubectl apply -f mongodb-service.yaml
+          kubectl apply -f k8s/mongodb-pvc.yaml
+          kubectl apply -f k8s/deployment-mongo.yaml
+          kubectl apply -f k8s/mongodb-service.yaml
           kubectl apply -f k8s/deployment-burguer-app.yaml
           kubectl apply -f k8s/service-burguer-app.yaml
           kubectl apply -f k8s/hpa-burguer-app.yaml
