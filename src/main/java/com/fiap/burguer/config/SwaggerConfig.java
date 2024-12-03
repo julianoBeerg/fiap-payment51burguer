@@ -13,7 +13,7 @@ public class SwaggerConfig {
     public GroupedOpenApi api()
     {
         return GroupedOpenApi.builder()
-                .group("Checkout API")
+                .group("Payment API")
                 .packagesToScan("com.fiap.burguer")
                 .build();
     }
@@ -32,7 +32,7 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .info(new io.swagger.v3.oas.models.info.Info()
-                        .title("FIAP - Checkout Burger API")
+                        .title("FIAP - Payment Burger API")
                         .contact(new Contact().name("Grupo 51").url("https://github.com/julianoBeerg/fiap-payment51burguer"))
                         .version("2.0.0")
                         .description("API for managing burgers\n\nContact:\n\n" + contactsDescription));
