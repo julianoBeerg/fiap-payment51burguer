@@ -22,7 +22,7 @@ spec:
         app: burguer-app
     spec:
       containers:
-          image: 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
+        - image: 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
           imagePullPolicy: IfNotPresent
           name: payment-51-burguer-app
           resources:
