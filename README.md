@@ -90,7 +90,7 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 - [**Diagrama da arquitetura de autenticação**](https://drive.google.com/file/d/1mVJoEI81gEIqISXHRPgA1j_1fxkFm1ty/view)
 
-- [**Diagrama da arquitetura do Sistema**](https://drive.google.com/file/d/1mVJoEI81gEIqISXHRPgA1j_1fxkFm1ty/view)
+- [**Diagrama da arquitetura do Sistema**](https://drive.google.com/file/d/1aOrEh3XR1r3pmZeIr5l475Kbfka61EgC/view?usp=sharing)
 
 - [**MER - Modelo de entidade relacionamento**](https://drive.google.com/file/d/1-e6vfEpsNNS0aMtH_256b9I7Zsa-4o-2/view)
 
