@@ -15,7 +15,11 @@ Juliano Silva Nunes - RM 354144 - silva.juliano8130@gmail.com
 Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 
-# FIAP 51Burger - Projeto
+# FIAP 51Burger - Checkout/Pagamento
+
+## 🛠️ Cobertura de testes e coverage do microserviço Checkout/Pagamento
+![image](https://github.com/user-attachments/assets/c5d8f06e-91cf-4e58-80c5-b345587cbe9a)
+![image](https://github.com/user-attachments/assets/baf7b4cd-270f-4e82-8e31-7b8821e1eef1)
 
 ## 📁 Acesso ao Projeto
 
