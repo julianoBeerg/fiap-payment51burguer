@@ -41,15 +41,15 @@ jobs:
           docker push 742943855162.dkr.ecr.us-east-1.amazonaws.com/payment-51-burguer-app:latest
           
 
-#      - name: Kube Secrets
-#        if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
-#        run: |
-#         kubectl create secret generic secret-burguer51 \
-#            --from-literal=BASE_URL_ORDER="${{ secrets.ORDER_BASE_URL }}" \
-#            --from-literal=MONGO_URL="${{ secrets.MONGO_URL }}" \
-#            --from-literal=MONGO_DATABASE=${{ secrets.MONGO_DATABASE }} \
-#            --from-literal=MONGO_USER=${{ secrets.MONGO_USER }} \
-#            --from-literal=MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}
+      - name: Kube Secrets
+        if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
+        run: |
+         kubectl create secret generic secret-burguer51 \
+            --from-literal=BASE_URL_ORDER="${{ secrets.ORDER_BASE_URL }}" \
+            --from-literal=MONGO_URL="${{ secrets.MONGO_URL }}" \
+            --from-literal=MONGO_DATABASE=${{ secrets.MONGO_DATABASE }} \
+            --from-literal=MONGO_USER=${{ secrets.MONGO_USER }} \
+            --from-literal=MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}
 
       - name: Kube Apply
         if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
