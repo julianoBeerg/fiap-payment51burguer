@@ -54,7 +54,7 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
   [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
 
 - **Vídeo da quarta Fase do Projeto:**  
-  [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=1WUWUEvXvqU)
+  [YouTube - PosTech Software Architecture Grupo 51](https://youtu.be/-aFmMqXjKfQ?si=t7R8Vr87b2Ml3t-m)
 
 - **PDF com Vídeo, Diagramas e Modelagens:**  
   [Documento Google](https://docs.google.com/document/d/1Ay-OWOHbjec_wPjQI0ntPJny1N1lfZJFQqEHw97hONQ/edit?usp=drive_link)
